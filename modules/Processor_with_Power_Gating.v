@@ -1,31 +1,28 @@
-//==============================================================================
-// Top-Level Processor with Power Gating
-// Integrates ALU, Memory, IO, and Power Management Controller
-//==============================================================================
+
 module Processor_with_Power_Gating(
     input  wire clk,
     input  wire reset,
     
-    // ALU Interface
+
     input  wire [3:0] alu_a,
     input  wire [3:0] alu_b,
     input  wire [2:0] alu_opcode,
     output wire [3:0] alu_result,
     
-    // Memory Interface
+   
     input  wire [3:0] mem_addr,
     input  wire [7:0] mem_data_in,
     input  wire mem_write_en,
     input  wire mem_req_valid,
     output wire [7:0] mem_data_out,
     
-    // IO Interface
+
     input  wire [7:0] io_in,
     input  wire io_write_en,
     input  wire io_read_request,
     output wire [7:0] io_out,
     
-    // Power Status Outputs
+
     output wire alu_idle,
     output wire mem_idle,
     output wire io_idle,
@@ -36,14 +33,12 @@ module Processor_with_Power_Gating(
     output wire [1:0] active_modules_count,
     output wire [7:0] power_efficiency_metric,
     
-    // Gated clocks for monitoring
+
     output wire alu_clk_gated,
     output wire mem_clk_gated,
     output wire io_clk_gated
 );
-    //==========================================================================
-    // ALU Instance
-    //==========================================================================
+  
     ALU_with_power_gating alu_inst (
         .clk(clk),
         .reset(reset),
@@ -56,9 +51,6 @@ module Processor_with_Power_Gating(
         .clk_gated(alu_clk_gated)
     );
     
-    //==========================================================================
-    // Memory Instance
-    //==========================================================================
     Memory_with_power_gating mem_inst (
         .clk(clk),
         .reset(reset),
@@ -72,9 +64,7 @@ module Processor_with_Power_Gating(
         .clk_gated(mem_clk_gated)
     );
     
-    //==========================================================================
-    // IO Controller Instance
-    //==========================================================================
+
     IO_with_power_gating io_inst (
         .clk(clk),
         .reset(reset),
@@ -87,9 +77,7 @@ module Processor_with_Power_Gating(
         .clk_gated(io_clk_gated)
     );
     
-    //==========================================================================
-    // Power Management Controller Instance
-    //==========================================================================
+
     Power_Management_Controller pmc_inst (
         .clk(clk),
         .reset(reset),
