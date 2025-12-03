@@ -1,7 +1,4 @@
-//==============================================================================
-// Comprehensive Testbench for Power Gating System
-// Tests 6 different scenarios with power consumption analysis
-//==============================================================================
+
 `timescale 1ns/1ps
 
 module tb_power_gating;
@@ -35,7 +32,7 @@ module tb_power_gating;
     wire [7:0] power_efficiency_metric;
     wire alu_clk_gated, mem_clk_gated, io_clk_gated;
     
-    // Power calculation variables
+
     real active_power = 100.0;      // Power in mW when active
     real idle_power = 50.0;         // Power in mW when idle (clock gated)
     real gated_power = 5.0;         // Power in mW when power gated
@@ -50,10 +47,7 @@ module tb_power_gating;
     
     // File for output
     integer file;
-    
-    //==========================================================================
-    // DUT Instantiation
-    //==========================================================================
+
     Processor_with_Power_Gating dut (
         .clk(clk),
         .reset(reset),
@@ -84,17 +78,11 @@ module tb_power_gating;
         .io_clk_gated(io_clk_gated)
     );
     
-    //==========================================================================
-    // Clock Generation (10ns period = 100MHz)
-    //==========================================================================
     initial begin
         clk = 0;
         forever #5 clk = ~clk;
     end
-    
-    //==========================================================================
-    // Power Monitoring
-    //==========================================================================
+
     always @(posedge clk) begin
         if (!reset) begin
             total_cycles = total_cycles + 1;
@@ -124,15 +112,11 @@ module tb_power_gating;
                 io_gated_cycles = io_gated_cycles + 1;
         end
     end
-    
-    //==========================================================================
-    // Power Calculation Task
-    //==========================================================================
+
     task calculate_power;
         input [200*8:1] test_name;
         begin
-            // Energy = Power × Time
-            // Time per cycle = 10ns
+        
             alu_energy = (alu_active_cycles * active_power + 
                          alu_idle_cycles * idle_power + 
                          alu_gated_cycles * gated_power) * 10e-9;
@@ -147,10 +131,10 @@ module tb_power_gating;
             
             total_energy = alu_energy + mem_energy + io_energy;
             
-            // Baseline: All modules always active
+      
             baseline_energy = total_cycles * 3 * active_power * 10e-9;
             
-            // Power savings percentage
+   
             power_savings_percent = ((baseline_energy - total_energy) / baseline_energy) * 100.0;
             
             // Display results
@@ -198,10 +182,7 @@ module tb_power_gating;
             $fwrite(file, "========================================\n\n");
         end
     endtask
-    
-    //==========================================================================
-    // Reset Task
-    //==========================================================================
+
     task reset_counters;
         begin
             total_cycles = 0;
@@ -216,10 +197,7 @@ module tb_power_gating;
             io_gated_cycles = 0;
         end
     endtask
-    
-    //==========================================================================
-    // Initialize Signals Task
-    //==========================================================================
+
     task init_signals;
         begin
             alu_a = 4'b0000;
@@ -234,10 +212,7 @@ module tb_power_gating;
             io_read_request = 1'b0;
         end
     endtask
-    
-    //==========================================================================
-    // Main Test Sequence
-    //==========================================================================
+
     initial begin
         // Open output file
         file = $fopen("power_analysis_results.txt", "w");
@@ -254,9 +229,8 @@ module tb_power_gating;
         #20 reset = 0;
         #20;
         
-        //======================================================================
         // TEST CASE 1: Continuous ALU Activity (No Power Savings)
-        //======================================================================
+    
         $display("\n>>> Starting Test Case 1: Continuous ALU Activity");
         reset_counters();
         #10;
@@ -271,22 +245,21 @@ module tb_power_gating;
         calculate_power("Test 1: Continuous ALU Activity");
         init_signals();
         #50;
-        
-        //======================================================================
+
         // TEST CASE 2: ALU Bursts with Idle Periods (Clock Gating)
-        //======================================================================
+ 
         $display("\n>>> Starting Test Case 2: ALU Bursts with Idle");
         reset_counters();
         #10;
         
-        // Burst 1
+
         repeat (5) begin
             alu_a = $random % 16;
             alu_b = $random % 16;
             alu_opcode = $random % 8;
             #10;
         end
-        // Idle period
+     
         init_signals();
         #100; 
         // Burst 2
@@ -296,21 +269,19 @@ module tb_power_gating;
             alu_opcode = $random % 8;
             #10;
         end
-        
-        // Long idle period (power gating)
+
         init_signals();
         #150;
         
         calculate_power("Test 2: ALU Bursts with Idle Periods");
         #50;
-        
-        //======================================================================
+  
         // TEST CASE 3: Memory-Intensive Workload
-        //======================================================================
+
         $display("\n>>> Starting Test Case 3: Memory-Intensive Workload");
         reset_counters();
         #10;
-        // Write operations
+
         repeat (10) begin
             mem_addr = $random % 16;
             mem_data_in = $random % 256;
@@ -318,32 +289,30 @@ module tb_power_gating;
             mem_req_valid = 1'b1;
             #10;
         end
-        // Idle period
+    
         mem_write_en = 1'b0;
         mem_req_valid = 1'b0;
         #80;
-        // Read operations
+
         repeat (10) begin
             mem_addr = $random % 16;
             mem_write_en = 1'b0;
             mem_req_valid = 1'b1;
             #10;
         end
-        // Long idle (power gating)
+
         mem_req_valid = 1'b0;
         #150;
         calculate_power("Test 3: Memory-Intensive Workload");
         init_signals();
         #50;
         
-        //======================================================================
         // TEST CASE 4: IO-Intensive Operations
-        //======================================================================
+
         $display("\n>>> Starting Test Case 4: IO-Intensive Operations");
         reset_counters();
         #10;
-        
-        // IO write burst
+
         repeat (8) begin
             io_in = $random % 256;
             io_write_en = 1'b1;
@@ -352,8 +321,7 @@ module tb_power_gating;
         
         io_write_en = 1'b0;
         #60;
-        
-        // IO read burst
+ 
         repeat (8) begin
             io_read_request = 1'b1;
             #10;
@@ -365,15 +333,13 @@ module tb_power_gating;
         calculate_power("Test 4: IO-Intensive Operations");
         init_signals();
         #50;
-        
-        //======================================================================
+  
         // TEST CASE 5: Mixed Workload (All modules active at different times)
-        //======================================================================
+
         $display("\n>>> Starting Test Case 5: Mixed Workload");
         reset_counters();
         #10;
         
-        // Phase 1: ALU activity
         repeat (5) begin
             alu_a = $random % 16;
             alu_b = $random % 16;
@@ -382,8 +348,7 @@ module tb_power_gating;
         end
         init_signals();
         #40;
-        
-        // Phase 2: Memory activity
+
         repeat (5) begin
             mem_addr = $random % 16;
             mem_data_in = $random % 256;
@@ -394,8 +359,7 @@ module tb_power_gating;
         mem_write_en = 1'b0;
         mem_req_valid = 1'b0;
         #40;
-        
-        // Phase 3: IO activity
+
         repeat (5) begin
             io_in = $random % 256;
             io_write_en = 1'b1;
@@ -403,22 +367,19 @@ module tb_power_gating;
         end
         io_write_en = 1'b0;
         #40;
-        
-        // Phase 4: All modules idle (maximum power savings)
+
         init_signals();
         #150;
         
         calculate_power("Test 5: Mixed Workload");
         #50;
-        
-        //======================================================================
+
         // TEST CASE 6: Realistic Processor Simulation
-        //======================================================================
+
         $display("\n>>> Starting Test Case 6: Realistic Processor Simulation");
         reset_counters();
         #10;
-        
-        // Simulate instruction fetch and execution pattern
+ 
         repeat (3) begin
             // Fetch instruction (Memory read)
             mem_addr = $random % 16;
@@ -444,8 +405,7 @@ module tb_power_gating;
             #10;
             mem_write_en = 1'b0;
             mem_req_valid = 1'b0;
-            
-            // Pipeline bubble / idle time
+  
             #30;
         end
         
@@ -454,26 +414,19 @@ module tb_power_gating;
         io_write_en = 1'b1;
         #10;
         io_write_en = 1'b0;
-        
-        // Long idle period (processor sleep)
+
         init_signals();
         #200;
         
         calculate_power("Test 6: Realistic Processor Simulation");
-        
-        //======================================================================
-        // End Simulation
-        //======================================================================
+
         #100;
         $fclose(file);
         $display("\n>>> All tests completed!");
         $display(">>> Results saved to power_analysis_results.txt");
         $finish;
     end
-    
-    //==========================================================================
-    // Timeout Watchdog
-    //==========================================================================
+ 
     initial begin
         #50000;
         $display("\nERROR: Simulation timeout!");
