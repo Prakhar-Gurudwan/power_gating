@@ -1,7 +1,4 @@
-//==============================================================================
-// ALU with Power Gating and Idle Detection
-// Features: Clock gating, power domain control, activity monitoring
-//==============================================================================
+
 module ALU_with_power_gating(
     input  wire clk,
     input  wire reset,
@@ -10,37 +7,35 @@ module ALU_with_power_gating(
     input  wire [2:0] opcode,
     output reg  [3:0] result,
     output reg  idle_detect,
-    output wire power_gated,        // Power gating status
-    output wire clk_gated           // Gated clock output for monitoring
+    output wire power_gated,       
+    output wire clk_gated           
 );
-    // Parameters
+  
     parameter IDLE_THRESHOLD = 5;
-    parameter POWER_GATE_DELAY = 2;  // Cycles before power gating
+    parameter POWER_GATE_DELAY = 2;  
     
-    // Internal registers
+   
     reg [3:0] prev_A, prev_B;
     reg [2:0] prev_opcode;
     reg [3:0] idle_counter;
     reg [3:0] alu_out;
-    reg [3:0] result_retention;      // Retained result during power gating
+    reg [3:0] result_retention;     
     
-    // Power management
-    reg enable_clock;                // Clock enable signal
-    reg power_domain_on;             // Power domain control
-    reg [2:0] power_gate_counter;    // Delay before actual power gating
     
-    // Activity detection
+    reg enable_clock;                
+    reg power_domain_on;             
+    reg [2:0] power_gate_counter;    
+    
+   
     wire activity_detected;
     assign activity_detected = (A != prev_A) 
     || (B != prev_B) || (opcode != prev_opcode);
     
-    // Clock gating
+    
     assign clk_gated = clk & enable_clock;
     assign power_gated = ~power_domain_on;
     
-    //==========================================================================
-    // ALU Combinational Logic
-    //==========================================================================
+
     always @(*) begin
         case (opcode)
             3'b000: alu_out = A + B;              // Addition
@@ -55,9 +50,7 @@ module ALU_with_power_gating(
         endcase
     end
     
-    //==========================================================================
-    // Power Management and Idle Detection
-    //==========================================================================
+
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             prev_A              <= 4'b0000;
@@ -83,12 +76,11 @@ module ALU_with_power_gating(
                 result_retention    <= alu_out;
             end 
             else begin
-                // Increment idle counter
+              
                 if (idle_counter < IDLE_THRESHOLD + POWER_GATE_DELAY) begin
                     idle_counter <= idle_counter + 1;
                 end
                 
-                // Idle detection
                 if (idle_counter >= IDLE_THRESHOLD) begin
                     idle_detect <= 1'b1;
                     
@@ -102,11 +94,8 @@ module ALU_with_power_gating(
                     end
                 end
                 
-                // Retain result during idle
-                result <= result_retention;
             end
             
-            // Update previous values
             prev_A      <= A;
             prev_B      <= B;
             prev_opcode <= opcode;
