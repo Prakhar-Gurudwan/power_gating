@@ -1,7 +1,4 @@
-//==============================================================================
-// Memory with Power Gating and Retention
-// Features: Power domain control, data retention, activity monitoring
-//==============================================================================
+
 module Memory_with_power_gating(
     input  wire clk,
     input  wire reset,
@@ -17,7 +14,7 @@ module Memory_with_power_gating(
     parameter IDLE_THRESHOLD = 5;
     parameter POWER_GATE_DELAY = 2;
     
-    // Memory array
+
     reg [7:0] mem [0:15];
     
     // Activity tracking
@@ -27,13 +24,13 @@ module Memory_with_power_gating(
     reg prev_req_valid;
     reg [3:0] idle_counter;
     
-    // Power management
+    
     reg enable_clock;
     reg power_domain_on;
     reg [2:0] power_gate_counter;
     reg [7:0] data_retention;
     
-    // Activity detection
+   
     wire activity_detected;
     assign activity_detected = req_valid || 
                                (addr != prev_addr) || 
@@ -44,10 +41,7 @@ module Memory_with_power_gating(
     assign clk_gated = clk & enable_clock;
     assign power_gated = ~power_domain_on;
     
-    //==========================================================================
-    // Memory Operations and Power Management
-    //==========================================================================
-    // Memory initialization
+  
     integer i;
     
     always @(posedge clk or posedge reset) begin
@@ -64,7 +58,7 @@ module Memory_with_power_gating(
             power_gate_counter  <= 3'b000;
             data_retention      <= 8'b00000000;
             
-            // Initialize memory
+           
             for (i = 0; i < 16; i = i + 1) begin
                 mem[i] <= 8'b00000000;
             end
@@ -84,7 +78,7 @@ module Memory_with_power_gating(
                     end
                 end
                 
-                // Reset power management
+            
                 idle_counter        <= 4'b0000;
                 idle_detect         <= 1'b0;
                 enable_clock        <= 1'b1;
@@ -92,12 +86,12 @@ module Memory_with_power_gating(
                 power_gate_counter  <= 3'b000;
             end 
             else begin
-                // Increment idle counter
+                
                 if (idle_counter < IDLE_THRESHOLD + POWER_GATE_DELAY) begin
                     idle_counter <= idle_counter + 1;
                 end
                 
-                // Idle detection and power gating
+                
                 if (idle_counter >= IDLE_THRESHOLD) begin
                     idle_detect <= 1'b1;
                     
@@ -110,11 +104,11 @@ module Memory_with_power_gating(
                     end
                 end
                 
-                // Retain data output
+              
                 data_out <= data_retention;
             end
             
-            // Update previous values
+            
             prev_addr       <= addr;
             prev_data_in    <= data_in;
             prev_write_en   <= write_en;
