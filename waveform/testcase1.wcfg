@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_power_gating_func_synth.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_power_gating" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,223.001 ns"></ZoomEndTime>
+      <Cursor1Time time="2,740.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="219"></NameColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="47" />
+   <wvobject fp_name="/tb_power_gating/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_a" type="array">
+      <obj_property name="ElementShortName">alu_a[3:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_a[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_b" type="array">
+      <obj_property name="ElementShortName">alu_b[3:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_b[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_opcode" type="array">
+      <obj_property name="ElementShortName">alu_opcode[2:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_opcode[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_result" type="array">
+      <obj_property name="ElementShortName">alu_result[3:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_result[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_addr" type="array">
+      <obj_property name="ElementShortName">mem_addr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_addr[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_data_in" type="array">
+      <obj_property name="ElementShortName">mem_data_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_write_en" type="logic">
+      <obj_property name="ElementShortName">mem_write_en</obj_property>
+      <obj_property name="ObjectShortName">mem_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_req_valid" type="logic">
+      <obj_property name="ElementShortName">mem_req_valid</obj_property>
+      <obj_property name="ObjectShortName">mem_req_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_data_out" type="array">
+      <obj_property name="ElementShortName">mem_data_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_in" type="array">
+      <obj_property name="ElementShortName">io_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">io_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_write_en" type="logic">
+      <obj_property name="ElementShortName">io_write_en</obj_property>
+      <obj_property name="ObjectShortName">io_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_read_request" type="logic">
+      <obj_property name="ElementShortName">io_read_request</obj_property>
+      <obj_property name="ObjectShortName">io_read_request</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_out" type="array">
+      <obj_property name="ElementShortName">io_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">io_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_idle" type="logic">
+      <obj_property name="ElementShortName">alu_idle</obj_property>
+      <obj_property name="ObjectShortName">alu_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_idle" type="logic">
+      <obj_property name="ElementShortName">mem_idle</obj_property>
+      <obj_property name="ObjectShortName">mem_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_idle" type="logic">
+      <obj_property name="ElementShortName">io_idle</obj_property>
+      <obj_property name="ObjectShortName">io_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_power_gated" type="logic">
+      <obj_property name="ElementShortName">alu_power_gated</obj_property>
+      <obj_property name="ObjectShortName">alu_power_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_power_gated" type="logic">
+      <obj_property name="ElementShortName">mem_power_gated</obj_property>
+      <obj_property name="ObjectShortName">mem_power_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_power_gated" type="logic">
+      <obj_property name="ElementShortName">io_power_gated</obj_property>
+      <obj_property name="ObjectShortName">io_power_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/system_power_save_mode" type="logic">
+      <obj_property name="ElementShortName">system_power_save_mode</obj_property>
+      <obj_property name="ObjectShortName">system_power_save_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/active_modules_count" type="array">
+      <obj_property name="ElementShortName">active_modules_count[1:0]</obj_property>
+      <obj_property name="ObjectShortName">active_modules_count[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/power_efficiency_metric" type="array">
+      <obj_property name="ElementShortName">power_efficiency_metric[7:0]</obj_property>
+      <obj_property name="ObjectShortName">power_efficiency_metric[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_clk_gated" type="logic">
+      <obj_property name="ElementShortName">alu_clk_gated</obj_property>
+      <obj_property name="ObjectShortName">alu_clk_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_clk_gated" type="logic">
+      <obj_property name="ElementShortName">mem_clk_gated</obj_property>
+      <obj_property name="ObjectShortName">mem_clk_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_clk_gated" type="logic">
+      <obj_property name="ElementShortName">io_clk_gated</obj_property>
+      <obj_property name="ObjectShortName">io_clk_gated</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/active_power" type="other">
+      <obj_property name="ElementShortName">active_power</obj_property>
+      <obj_property name="ObjectShortName">active_power</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/idle_power" type="other">
+      <obj_property name="ElementShortName">idle_power</obj_property>
+      <obj_property name="ObjectShortName">idle_power</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/gated_power" type="other">
+      <obj_property name="ElementShortName">gated_power</obj_property>
+      <obj_property name="ObjectShortName">gated_power</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/total_cycles" type="array">
+      <obj_property name="ElementShortName">total_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">total_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_active_cycles" type="array">
+      <obj_property name="ElementShortName">alu_active_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_active_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_idle_cycles" type="array">
+      <obj_property name="ElementShortName">alu_idle_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_idle_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_gated_cycles" type="array">
+      <obj_property name="ElementShortName">alu_gated_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_gated_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_active_cycles" type="array">
+      <obj_property name="ElementShortName">mem_active_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_active_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_idle_cycles" type="array">
+      <obj_property name="ElementShortName">mem_idle_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_idle_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_gated_cycles" type="array">
+      <obj_property name="ElementShortName">mem_gated_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_gated_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_active_cycles" type="array">
+      <obj_property name="ElementShortName">io_active_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">io_active_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_idle_cycles" type="array">
+      <obj_property name="ElementShortName">io_idle_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">io_idle_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_gated_cycles" type="array">
+      <obj_property name="ElementShortName">io_gated_cycles[31:0]</obj_property>
+      <obj_property name="ObjectShortName">io_gated_cycles[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/alu_energy" type="other">
+      <obj_property name="ElementShortName">alu_energy</obj_property>
+      <obj_property name="ObjectShortName">alu_energy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/mem_energy" type="other">
+      <obj_property name="ElementShortName">mem_energy</obj_property>
+      <obj_property name="ObjectShortName">mem_energy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/io_energy" type="other">
+      <obj_property name="ElementShortName">io_energy</obj_property>
+      <obj_property name="ObjectShortName">io_energy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/total_energy" type="other">
+      <obj_property name="ElementShortName">total_energy</obj_property>
+      <obj_property name="ObjectShortName">total_energy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/baseline_energy" type="other">
+      <obj_property name="ElementShortName">baseline_energy</obj_property>
+      <obj_property name="ObjectShortName">baseline_energy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/power_savings_percent" type="other">
+      <obj_property name="ElementShortName">power_savings_percent</obj_property>
+      <obj_property name="ObjectShortName">power_savings_percent</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_power_gating/file" type="array">
+      <obj_property name="ElementShortName">file[31:0]</obj_property>
+      <obj_property name="ObjectShortName">file[31:0]</obj_property>
+   </wvobject>
+</wave_config>
