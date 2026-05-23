@@ -1,5 +1,5 @@
 IMPLEMENTATION OF COARSE GRAINED POWER GATING TECHNIQUE
-FOR DIGITAL LOGIC BLOCKS
+FOR DIGITAL LOGIC BLOCKS (simulation+hardware)
 
 
 
@@ -96,6 +96,7 @@ OVERALL SUMMARY
 
 HARDWARE VALIDATION:
 
+<img width="721" height="405" alt="image" src="https://github.com/user-attachments/assets/41465e12-699f-4a11-9177-256b4ce39729" />
 
 hardware video implementation link 
 https://youtu.be/Rze4NsnJ5uY
@@ -118,8 +119,11 @@ happen within a single clock cycle of the button press.
  btn[3] (Pause) freezes the 7-segment counter display and prevents any LED state fromchanging— verified by pausing mid-countdown and confirming the counter value held for an extendedperiod.
 
  The 7-segment left panel cycles correctly through IO / MEM / ALU / ALL as modules gateinsequence.
-12
 
- The LCD initializes correctly after power-on and updates module states in real time as
-power gating transitions happen
 
+
+POWER GATING ON ESP32
+Although the FPGA implementation offers a thorough RTL-level proof of power gating concepts, power gating is behavioral by nature, and FPGA fabric cannot physically detach its logic fromVDD. An ESP32 microcontroller interfaced with a DHT11 temperature and humidity sensor, an IRproximitysensor, and a vibration sensor was used in a multi-sensor experiment to supplement this withreal
+hardware-level power data.
+This scheduling technique applies the FPGA design concept to a multi-sensor environment: all
+sensors are fully turned off for a gated period of 20 seconds after being turnedonsimultaneously for a predefined active window of 10 seconds to gather event andenvironmental data. In order to assess cumulative energy savings, this cycle is repeatedacrossseveral rounds. Each sensor's VCC is routed through a separate GPIO-controlled switch(DHT11via GPIO5, IR sensor via GPIO18, vibration sensor via GPIO19) that is driven HIGHduring activeperiods and LOW during idle periods in order to achieve hardware-level power gating. Thishelped us to enable precise energy accounting and provided real component-level powerseparation.
