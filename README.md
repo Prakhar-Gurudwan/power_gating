@@ -123,6 +123,7 @@ happen within a single clock cycle of the button press.
 
 
 POWER GATING ON ESP32
+
 Although the FPGA implementation offers a thorough RTL-level proof of power gating concepts, power gating is behavioral by nature, and FPGA fabric cannot physically detach its logic fromVDD. An ESP32 microcontroller interfaced with a DHT11 temperature and humidity sensor, an IRproximitysensor, and a vibration sensor was used in a multi-sensor experiment to supplement this withreal
 hardware-level power data.
 This scheduling technique applies the FPGA design concept to a multi-sensor environment: all
