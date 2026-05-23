@@ -1,5 +1,5 @@
-IMPLEMENTATION OF POWER GATING TECHNIQUE
-FOR PROCESSOR FUNCTIONAL UNITS
+IMPLEMENTATION OF COARSE GRAINED POWER GATING TECHNIQUE
+FOR DIGITAL LOGIC BLOCKS
 
 
 
@@ -93,7 +93,30 @@ OVERALL SUMMARY
 <img width="1026" height="886" alt="image" src="https://github.com/user-attachments/assets/12ec2c90-8e2c-49ad-a1d2-f1738dc716e5" />
 <img width="818" height="474" alt="image" src="https://github.com/user-attachments/assets/55d7c558-fab2-4a60-8492-c2b7d5eb67e5" />
 
+HARDWARE VALIDATION:
+hardware video implementation link 
+https://youtu.be/Rze4NsnJ5uY
 
+After programming the bitstream onto the Boolean Board, the following functionality was verifieddirectly on hardware:
 
+ LED[3:0] correctly reflects the 4-bit ALU result as switches are changed —all eight
+operations were spot-checked by manual calculation and matched.
 
+ LED[6] (ALU ACTIVE) extinguishes after roughly 9 seconds of switch inactivity; LED[11]
+(ALU IDLE) asserts at the same instant. LED[12] (ALU POWER GATED) follows after afurther 6 seconds. 
+
+ LED[13] (SYSTEM SLEEP) asserts only when all three modules are simultaneously gated, confirming the AND gate logic.
+
+ btn[1] (Force Sleep) immediately asserts all three POWER GATED LEDs —verified to
+happen within a single clock cycle of the button press.
+
+ btn[2] (Wake All) immediately clears all POWER GATED LEDs —the module snaps backtoACTIVE state instantly. 
+
+ btn[3] (Pause) freezes the 7-segment counter display and prevents any LED state fromchanging— verified by pausing mid-countdown and confirming the counter value held for an extendedperiod.
+
+ The 7-segment left panel cycles correctly through IO / MEM / ALU / ALL as modules gateinsequence.
+12
+
+ The LCD initializes correctly after power-on and updates module states in real time as
+power gating transitions happen
 
