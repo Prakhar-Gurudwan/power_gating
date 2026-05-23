@@ -93,7 +93,10 @@ OVERALL SUMMARY
 <img width="1026" height="886" alt="image" src="https://github.com/user-attachments/assets/12ec2c90-8e2c-49ad-a1d2-f1738dc716e5" />
 <img width="818" height="474" alt="image" src="https://github.com/user-attachments/assets/55d7c558-fab2-4a60-8492-c2b7d5eb67e5" />
 
+
 HARDWARE VALIDATION:
+
+
 hardware video implementation link 
 https://youtu.be/Rze4NsnJ5uY
 
